@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Fun Facts</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px; background-color: #fff3cd; border-bottom: 3px solid #ffd966;
+    }
+    .user-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: url('https://via.placeholder.com/40') no-repeat center/cover;
+      cursor: pointer;
+    }
+    .fact-list {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .fact {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>🎉 Fun Facts</h2>
+    <div class="user-icon" onclick="window.location.href='profile.html'"></div>
+  </div>
+
+  <div class="fact-list">
+    <div class="fact">🧠 Your brain uses 20% of your body’s energy!</div>
+    <div class="fact">🦋 A butterfly tastes with its feet!</div>
+    <div class="fact">🌙 The moon has moonquakes—like earthquakes but on the moon!</div>
+    <div class="fact">🐙 Octopuses have three hearts and blue blood!</div>
+  </div>
+</body>
+</html>
