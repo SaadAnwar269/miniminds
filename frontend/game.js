@@ -15,8 +15,9 @@ const shapes = [
       document.getElementById("finalScore").style.display = "block";
       document.getElementById("finalScore").innerHTML = `✅ You scored ${score}/3! Saving progress...`;
   
-      const userId = localStorage.getItem("userId") || "kid123";
-      saveProgress(userId, "Shape Match Game", score * 100); // Simple score logic
+      const userId = localStorage.getItem("userId");
+      saveProgress(userId, "Level 1 - Shapes", score * 100); // Save via Azure
+  
       setTimeout(() => {
         window.location.href = "progress.html";
       }, 2000);
@@ -38,9 +39,11 @@ const shapes = [
     } else {
       document.getElementById("feedback").textContent = `❌ Oops! It was a ${currentShape.name}.`;
     }
+  
     currentQuestion++;
     setTimeout(showNextShape, 1000);
   }
   
   window.addEventListener("DOMContentLoaded", showNextShape);
   window.submitAnswer = submitAnswer;
+  
