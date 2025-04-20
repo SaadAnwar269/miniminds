@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniMinds Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8e1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #fff3cd;
+      border-bottom: 3px solid #ffd966;
+    }
+
+    .topbar h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      color: #ff6f61;
+    }
+
+    .chat-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      border-bottom: 2px solid #ffe082;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 75%;
+      line-height: 1.5;
+    }
+
+    .user-message {
+      background-color: #d1f7c4;
+      align-self: flex-end;
+    }
+
+    .bot-message {
+      background-color: #f0f0f0;
+      align-self: flex-start;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 10px 15px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ffd966;
+      border-radius: 20px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .input-area button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #ffd966;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .input-area button:hover {
+      background-color: #ffeb3b;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2><img src="assets/Logo.png" width="40" height="40" style="vertical-align: middle"> MiniMinds Chatbot</h2>
+    <div class="user-icon" onclick="window.location.href='profile.html'" title="My Profile"></div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box"></div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const inputField = document.getElementById('user-input');
+
+    // Function to append messages to the chat box
+    function appendMessage(content, isUser) {
+      const msg = document.createElement('div');
+      msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      msg.innerText = content;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Function to send message to the Azure Function
+    async function sendMessage() {
+      const userText = inputField.value.trim();
+      if (!userText) return;
+
+      // Append user message to the chatbox
+      appendMessage(userText, true);
+
+      // Clear input field
+      inputField.value = '';
+
+      // Append "Thinking..." message
+      appendMessage("Thinking...", false);
+
+      try {
+        // Send POST request to the backend Azure Function
+        const res = await fetch('https://miniminds-backend.azurewebsites.net/api/chatbot?', {  // Make sure to replace with your Azure Function URL
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userMessage: userText })  // Send user message to backend
+        });
+
+        const data = await res.json();  // Parse the response
+        document.querySelectorAll('.bot-message').forEach(msg => {
+          if (msg.innerText === 'Thinking...') msg.remove();  // Remove "Thinking..." message
+        });
+
+        // Append the bot's reply to the chat
+        appendMessage(data.reply, false);  
+      } catch (err) {
+        console.error(err);
+        document.querySelectorAll('.bot-message').forEach(msg => {
+          if (msg.innerText === 'Thinking...') msg.remove();  // Remove "Thinking..." on error
+        });
+        appendMessage("Oops! Something went wrong.", false);  // Display error message
+      }
+    }
+
+    // Event listener for sending message with Enter key
+    inputField.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
