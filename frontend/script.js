@@ -22,3 +22,11 @@ function login() {
     }
   });
   
+  async function fetchProgress() {
+    const res = await fetch("https://miniminds-backend.azurewebsites.net/api/getProgress?");
+    const data = await res.json();
+    console.log("User progress:", data);
+  }
+  
+  fetchProgress();
+  
