@@ -3,36 +3,40 @@ async function login() {
     if (!userId) return;
     
     localStorage.setItem("userId", userId);
-  
-    // Optionally initialize progress
+
+    // Optionally initialize progress (only if not already created)
     await saveProgressToAzure(userId, " ", 0);
-  
+
     window.location.href = "home.html";
-  }
-  
-  window.addEventListener("DOMContentLoaded", fetchProgress);
-  
-  async function fetchProgress() {
+}
+
+window.addEventListener("DOMContentLoaded", fetchProgress);
+
+async function fetchProgress() {
     const userId = localStorage.getItem("userId");
     if (!userId) return;
-  
+
     try {
-      // 🔁 Use your actual backend API, NOT blob URL directly (private container!)
-      const url = `https://miniminds-backend.azurewebsites.net/api/getProgress?userId=${userId}`;
-      
-      const res = await fetch(url);
-      const data = await res.json();
-  
-      document.getElementById("userIdDisplay").textContent = data.userId || "Unknown";
-      document.getElementById("levelDisplay").textContent = data.progress || "Level 0";
-      document.getElementById("scoreDisplay").textContent = data.score || 0;
+        // ✅ Fetch directly from your public Azure Blob container
+        const url = `https://minimindsrg9f5a.blob.core.windows.net/user-progress/${userId}.json`;
+
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error(`Progress file not found for ${userId}`);
+        }
+
+        const data = await res.json();
+
+        document.getElementById("userIdDisplay").textContent = data.userId || "Unknown";
+        document.getElementById("levelDisplay").textContent = data.progress || "Level 0";
+        document.getElementById("scoreDisplay").textContent = data.score || 0;
     } catch (error) {
-      console.error("Error fetching progress:", error);
+        console.error("Error fetching progress:", error);
     }
-  }
-  
-  async function saveProgress(userId, progress, score) {
+}
+
+async function saveProgress(userId, progress, score) {
     // Calls saveProgressToAzure in azure-upload.js
     await saveProgressToAzure(userId, progress, score);
-  }
-  
+}
