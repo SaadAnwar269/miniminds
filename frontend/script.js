@@ -40,3 +40,20 @@ function login() {
   // Call the fetch function when the page is ready
   window.addEventListener("DOMContentLoaded", fetchProgress);
   
+
+  async function saveProgress(userId, progress, score) {
+    const res = await fetch("https://miniminds-backend.azurewebsites.net/api/saveProgress?", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userId, progress, score })
+    });
+  
+    const result = await res.json();
+    console.log("Save response:", result);
+  }
+   
+    //Then, on some action (like a button), call it like this:
+    //const userId = localStorage.getItem("userId");
+    //saveProgress(userId, "Level 2 - Colors", 160);
