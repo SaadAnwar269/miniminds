@@ -1,9 +1,12 @@
 async function login() {
     const userId = prompt("Enter your user ID (e.g., kid123):");
+    if (!userId) return;
+    
     localStorage.setItem("userId", userId);
   
-    // Set initial progress (optional if not already on Azure)
+    // Optionally initialize progress
     await saveProgressToAzure(userId, " ", 0);
+  
     window.location.href = "home.html";
   }
   
@@ -14,7 +17,9 @@ async function login() {
     if (!userId) return;
   
     try {
-      const url = `https://<your-storage-account>.blob.core.windows.net/user-progress/${userId}.json`;
+      // 🔁 Use your actual backend API, NOT blob URL directly (private container!)
+      const url = `https://miniminds-backend.azurewebsites.net/api/getProgress?userId=${userId}`;
+      
       const res = await fetch(url);
       const data = await res.json();
   
@@ -27,6 +32,7 @@ async function login() {
   }
   
   async function saveProgress(userId, progress, score) {
-    await saveProgressToAzure(userId, progress, score); // from azure-upload.js
+    // Calls saveProgressToAzure in azure-upload.js
+    await saveProgressToAzure(userId, progress, score);
   }
   
