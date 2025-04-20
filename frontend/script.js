@@ -23,10 +23,20 @@ function login() {
   });
   
   async function fetchProgress() {
+    try{
     const res = await fetch("https://miniminds-backend.azurewebsites.net/api/getProgress?");
     const data = await res.json();
     console.log("User progress:", data);
+
+    // Dynamically update the UI with fetched data
+    document.getElementById("userIdDisplay").textContent = data.userId || "Unknown";
+    document.getElementById("levelDisplay").textContent = data.progress || "Level 0";
+    document.getElementById("scoreDisplay").textContent = data.score || 0;
+  }catch (error) {
+    console.error("Error fetching progress:", error);
   }
+}
   
-  fetchProgress();
+  // Call the fetch function when the page is ready
+  window.addEventListener("DOMContentLoaded", fetchProgress);
   
