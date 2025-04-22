@@ -11,84 +11,83 @@ body {
     margin: auto;
   }
   
-  h2 {
-    color: #ff6f61;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-gap: 4px;
+    justify-content: center;
     margin-bottom: 20px;
   }
   
-  #quiz-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .question-container {
-    font-size: 24px;
-    font-weight: bold;
-    color: #4a4a4a;
-  }
-  
-  .answer-container {
-    margin-top: 20px;
-  }
-  
-  #answer {
-    font-size: 18px;
-    padding: 10px;
-    width: 60%;
-    margin-right: 10px;
-    border-radius: 10px;
+  .cell {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
     border: 1px solid #ccc;
-  }
-  
-  #submit-answer {
-    background-color: #ff6f61;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
-  }
-  
-  #submit-answer:hover {
-    background-color: #e85c50;
-  }
-  
-  #status {
-    font-size: 18px;
     font-weight: bold;
-    color: #4a4a4a;
+    font-size: 18px;
+    user-select: none;
+  }
+  
+  .cell.selected {
+    background-color: #c3e6cb;
+  }
+  
+  .cell.found {
+    background-color: #8fd19e;
+    color: white;
+  }
+  
+  #word-list {
+    list-style: none;
+    padding: 0;
     margin-top: 10px;
   }
   
-  #result-container {
-    display: none;
+  #word-list li.found {
+    text-decoration: line-through;
+    color: green;
   }
   
-  #result-message {
-    font-size: 24px;
+  /* Animation for congratulatory message */
+  #status {
+    margin-top: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #ff6f61;
+    animation: congratulation 3s ease-out;
   }
   
-  #back-to-game {
+  @keyframes congratulation {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  #back-button {
+    display: none;
     background-color: #ff6f61;
     padding: 10px 20px;
     border-radius: 20px;
     color: white;
     text-decoration: none;
     margin-top: 20px;
+    font-size: 16px;
   }
   
-  #back-to-game:hover {
+  #back-button:hover {
     background-color: #e85c50;
   }
   
-  .hidden {
-    display: none;
-  }
   
