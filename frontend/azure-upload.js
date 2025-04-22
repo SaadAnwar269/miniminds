@@ -1,4 +1,6 @@
-const connectionString = "DefaultEndpointsProtocol=https;AccountName=minimindsrg9f5a;AccountKey=cbL49zKjeB/WU9bHibLnYu5A2wKpRd+EDATsZw2YWpwYQiUZeIsQX30cIukGP9CsocTqhb1B133i+AStQDNpPQ==;EndpointSuffix=core.windows.net";
+import { BlobServiceClient } from "@azure/storage-blob";
+
+const connectionString = "DefaultEndpointsProtocol=https;AccountName=minimindsrg9f5a;AccountKey=Uu9m8m8qUuy+Zz8xwwELLCP+j5wwptJK5ayL5IgKxepGkXoxPRf7mNs25u09u2/49ET9deNN3MwC+AStsgaP/A==;EndpointSuffix=core.windows.net";
 
 async function saveProgressToAzure(userId, progress, score) {
   try {

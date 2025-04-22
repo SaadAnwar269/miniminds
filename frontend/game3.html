@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Quiz - MiniMinds</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Math Quiz - Can you answer these questions?</h2>
+    <div id="quiz-container">
+      <div class="question-container">
+        <span id="question">Loading...</span>
+      </div>
+      <div class="answer-container">
+        <input type="number" id="answer" placeholder="Enter your answer" />
+        <button id="submit-answer">Submit</button>
+      </div>
+      <div id="status"></div>
+    </div>
+
+    <div id="result-container" class="hidden">
+      <h3 id="result-message"></h3>
+      <a href="game.html" id="back-to-game">Back to Game</a>
+    </div>
+  </div>
+
+  <script src="math-quiz.js"></script>
+</body>
+</html>
