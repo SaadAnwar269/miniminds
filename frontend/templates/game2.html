@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>MiniMinds Word Search</title>
-  <link rel="stylesheet" href="style2.css" />
+  <!-- Corrected path to style2.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}" />
 </head>
 <body>
   <div class="container">
@@ -14,6 +15,7 @@
     <div id="status"></div>
   </div>
 
-  <script src="script1.js"></script>
+  <!-- Corrected path to script1.js under static folder -->
+  <script src="{{ url_for('static', filename='script1.js') }}"></script>
 </body>
 </html>

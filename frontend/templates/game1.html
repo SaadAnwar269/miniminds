@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>MiniMinds - Shape Match</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     .game-container {
       text-align: center;
@@ -38,12 +39,9 @@
     <div id="finalScore" style="display:none;"></div>
   </div>
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/@azure/storage-blob@12.7.0/dist/azure-storage.blob.min.js"></script>
-  <script src="azure-upload.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="game.js" defer></script>
-  
-
+  <!-- Corrected paths to the scripts under static folder -->
+  <script src="{{ url_for('static', filename='azure-upload.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='game.js') }}" defer></script>
 </body>
 </html>

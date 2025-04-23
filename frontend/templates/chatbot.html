@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MiniMinds Chatbot</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -98,8 +99,9 @@
 </head>
 <body>
   <div class="topbar">
-    <h2><img src="assets/Logo.png" width="40" height="40" style="vertical-align: middle"> MiniMinds Chatbot</h2>
-    <div class="user-icon" onclick="window.location.href='profile.html'" title="My Profile"></div>
+    <!-- Corrected path to logo image under static folder -->
+    <h2><img src="{{ url_for('static', filename='assets/Logo.png') }}" width="40" height="40" style="vertical-align: middle"> MiniMinds Chatbot</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'" title="My progress"></div>
   </div>
 
   <div class="chat-container">

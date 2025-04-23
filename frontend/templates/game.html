@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>MiniMinds - Home</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
   <style>
     .topbar {
       display: flex;
@@ -64,20 +65,22 @@
 <body>
   <div class="topbar">
     <h2>🏡 MiniMinds</h2>
-    <div class="user-icon" title="My Profile" onclick="window.location.href='profile.html'"></div>
+    <!-- Corrected progress link -->
+    <div class="user-icon" title="My progress" onclick="window.location.href='{{ url_for('progress') }}'"></div>
   </div>
 
   <div class="section-grid">
-    <div class="card" onclick="window.location.href='game1.html'">
-      <img src="assets/learn.png" alt="SHAPE QUIZ">
+    <div class="card" onclick="window.location.href='{{ url_for('game1') }}'">
+      <!-- Corrected paths to images under static folder -->
+      <img src="{{ url_for('static', filename='assets/learn.png') }}" alt="SHAPE QUIZ">
       <div class="card-title">SHAPE QUIZ</div>
     </div>
-    <div class="card" onclick="window.location.href='game2.html'">
-      <img src="assets/game.jpg" alt="WORD SEARCH">
+    <div class="card" onclick="window.location.href='{{ url_for('game2') }}'">
+      <img src="{{ url_for('static', filename='assets/game.jpg') }}" alt="WORD SEARCH">
       <div class="card-title">WORD SEARCH</div>
     </div>
-    <div class="card" onclick="window.location.href='game3.html'">
-      <img src="assets/progress.jpg" alt="MATH QUIZ">
+    <div class="card" onclick="window.location.href='{{ url_for('game3') }}'">
+      <img src="{{ url_for('static', filename='assets/progress.jpg') }}" alt="MATH QUIZ">
       <div class="card-title">MATH QUIZ</div>
     </div>
   </div>

@@ -1,0 +1,74 @@
+<!-- NUMBERS PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Learn Numbers</title>
+  <!-- Corrected path to style1.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}" />
+  <style>/* same styles as Shapes page */</style>
+</head>
+<body>
+  <div class="topbar">
+    <!-- Corrected path to logo image under static folder -->
+    <h2><img src="{{ url_for('static', filename='assets/Logo.png') }}" alt="Logo" width="20" height="60"> MiniMinds</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+  </div>
+
+  <h2>Learn Numbers!</h2>
+
+  <div class="flashcard-grid">
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="{{ url_for('static', filename='assets/1.jpg') }}">
+          <div class="shape-name">One</div>
+        </div>
+        <div class="flip-back">One sun shines in the sky!</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="{{ url_for('static', filename='assets/2.jpg') }}">
+          <div class="shape-name">Two</div>
+        </div>
+        <div class="flip-back">Two eyes help us see!</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="{{ url_for('static', filename='assets/3.jpg') }}">
+          <div class="shape-name">Three</div>
+        </div>
+        <div class="flip-back">Three wheels on a tricycle!</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="{{ url_for('static', filename='assets/4.jpg') }}">
+          <div class="shape-name">Four</div>
+        </div>
+        <div class="flip-back">Four legs on a table!</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="{{ url_for('static', filename='assets/5.jpg') }}">
+          <div class="shape-name">Five</div>
+        </div>
+        <div class="flip-back">Five fingers on a hand!</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="{{ url_for('learn') }}" class="back-button">← Back to Learn</a>
+</body>
+</html>

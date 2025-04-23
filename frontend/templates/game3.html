@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Math Quiz - MiniMinds</title>
-  <link rel="stylesheet" href="style3.css" />
+  <!-- Corrected path to style3.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}" />
 </head>
 <body>
   <div class="container">
@@ -18,9 +19,11 @@
     </div>
     <div id="result-container" class="hidden">
       <h3 id="result-message"></h3>
-      <a href="game.html" id="back-to-game">Back to Game</a>
+      <a href="{{ url_for('game') }}" id="back-to-game">Back to Game</a>
     </div>
   </div>
-  <script src="script2.js"></script>
+
+  <!-- Corrected path to script2.js under static folder -->
+  <script src="{{ url_for('static', filename='script2.js') }}"></script>
 </body>
 </html>

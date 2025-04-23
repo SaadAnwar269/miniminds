@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>MiniMinds - Settings</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
     .topbar {
@@ -46,7 +47,7 @@
 <body>
   <div class="topbar">
     <h2>⚙️ Settings</h2>
-    <div class="user-icon" onclick="window.location.href='profile.html'"></div>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
   </div>
 
   <div class="settings-container">

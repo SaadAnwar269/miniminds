@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MiniMinds - Learn</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>MiniMinds - Rewards</title>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
     .topbar {
@@ -26,33 +27,32 @@
     }
     .card:hover { transform: scale(1.05); }
     .card img { width: 60px; margin-bottom: 10px; }
-    .card-title { font-size: 18px; font-weight: bold; color: #ff6f61; }
+    .card-title { font-size: 18px; font-weight: bold; color: #28a745; }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <h2>📘 Learn</h2>
-    <div class="user-icon" onclick="window.location.href='profile.html'"></div>
+    <h2>🎁 Rewards</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
   </div>
 
   <div class="section-grid">
-    <div class="card" onclick="window.location.href='alphabet.html'">
-      <img src="assets/alphabet.jpeg" alt="Alphabet">
-      <div class="card-title">Alphabet</div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='assets/sticker.png') }}" alt="Stickers">
+      <div class="card-title">Fun Stickers</div>
     </div>
-    <div class="card" onclick="window.location.href='numbers.html'">
-      <img src="assets/numbers.png" alt="Numbers">
-      <div class="card-title">Numbers</div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='assets/avatar.png') }}" alt="Avatars">
+      <div class="card-title">New Avatars</div>
     </div>
-    <div class="card" onclick="window.location.href='shapes.html'">
-      <img src="assets/shapes.jpg" alt="Shapes">
-      <div class="card-title">Shapes</div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='assets/coins.png') }}" alt="Coins">
+      <div class="card-title">100 Coins</div>
     </div>
-    <div class="card" onclick="window.location.href='colors.html'">
-      <img src="assets/colors.jpeg" alt="Colors">
-      <div class="card-title">Colors</div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='assets/badge.png') }}" alt="Badges">
+      <div class="card-title">Achievement Badges</div>
     </div>
-  
   </div>
 </body>
 </html>
