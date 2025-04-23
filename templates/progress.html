@@ -12,10 +12,10 @@
   <div class="container">
     <h1>📊 Your Progress</h1>
     
-    <!-- Dynamically display User ID, Level, and Score -->
-    <p>User ID: <span id="userIdDisplay">Loading...</span></p>
-    <p>Level: <span id="levelDisplay">0</span></p>
-    <p>Score: <span id="scoreDisplay">0</span></p>
+  <p>User ID: <span id="userIdDisplay">{{ user_id }}</span></p>
+  <p>Level: <span id="levelDisplay">{{ level }}</span></p>
+  <p>Score: <span id="scoreDisplay">{{ score }}</span></p>
+
     
     <!-- Display a fun image, e.g., trophy -->
     <img src="{{ url_for('static', filename='assets/rewards.png') }}" alt="Cartoon trophy" />

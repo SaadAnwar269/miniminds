@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MiniMinds Chatbot</title>
-  <!-- Corrected path to style.css under static folder -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     body {
@@ -47,24 +46,30 @@
       padding: 20px;
       overflow-y: auto;
       border-bottom: 2px solid #ffe082;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .message {
-      margin-bottom: 15px;
       padding: 10px 15px;
       border-radius: 20px;
       max-width: 75%;
       line-height: 1.5;
+      display: inline-block;
+      margin-bottom: 10px;
     }
 
     .user-message {
       background-color: #d1f7c4;
       align-self: flex-end;
+      text-align: right;
     }
 
     .bot-message {
       background-color: #f0f0f0;
       align-self: flex-start;
+      text-align: left;
     }
 
     .input-area {
@@ -99,7 +104,6 @@
 </head>
 <body>
   <div class="topbar">
-    <!-- Corrected path to logo image under static folder -->
     <h2><img src="{{ url_for('static', filename='assets/Logo.png') }}" width="40" height="40" style="vertical-align: middle"> MiniMinds Chatbot</h2>
     <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'" title="My progress"></div>
   </div>
@@ -116,7 +120,6 @@
     const chatBox = document.getElementById('chat-box');
     const inputField = document.getElementById('user-input');
 
-    // Function to append messages to the chat box
     function appendMessage(content, isUser) {
       const msg = document.createElement('div');
       msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -125,45 +128,34 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Function to send message to the Azure Function
     async function sendMessage() {
       const userText = inputField.value.trim();
       if (!userText) return;
 
-      // Append user message to the chatbox
       appendMessage(userText, true);
-
-      // Clear input field
       inputField.value = '';
-
-      // Append "Thinking..." message
       appendMessage("Thinking...", false);
 
       try {
-        // Send POST request to the backend Azure Function
-        const res = await fetch('https://miniminds-backend.azurewebsites.net/api/chatbot?', {  // Make sure to replace with your Azure Function URL
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userMessage: userText })  // Send user message to backend
+        const res = await fetch("/chatbot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userMessage: userText })
         });
 
-        const data = await res.json();  // Parse the response
+        const data = await res.json();
         document.querySelectorAll('.bot-message').forEach(msg => {
-          if (msg.innerText === 'Thinking...') msg.remove();  // Remove "Thinking..." message
+          if (msg.innerText === 'Thinking...') msg.remove();
         });
-
-        // Append the bot's reply to the chat
-        appendMessage(data.reply, false);  
+        appendMessage(data.reply, false);
       } catch (err) {
-        console.error(err);
         document.querySelectorAll('.bot-message').forEach(msg => {
-          if (msg.innerText === 'Thinking...') msg.remove();  // Remove "Thinking..." on error
+          if (msg.innerText === 'Thinking...') msg.remove();
         });
-        appendMessage("Oops! Something went wrong.", false);  // Display error message
+        appendMessage("Oops! Something went wrong.", false);
       }
     }
 
-    // Event listener for sending message with Enter key
     inputField.addEventListener('keydown', e => {
       if (e.key === 'Enter') sendMessage();
     });
