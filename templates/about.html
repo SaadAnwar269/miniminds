@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About - MiniMinds</title>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff9e6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #fff3cd;
+      border-bottom: 3px solid #ffd966;
+    }
+
+    .topbar h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .topbar img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: url('https://via.placeholder.com/40') no-repeat center/cover;
+      cursor: pointer;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container h1 {
+      color: #ff6f61;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .about-container p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .founders {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff8dc;
+      border-left: 5px solid #ffd966;
+      border-radius: 15px;
+    }
+
+    .founders h3 {
+      margin-top: 0;
+      color: #ff6f61;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-btn button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ffda8f;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .back-btn button:hover {
+      background-color: #ffc857;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <!-- Corrected path to logo image under static folder -->
+    <h2><img src="{{ url_for('static', filename='assets/Logo.png') }}" alt="MiniMinds Logo"> MiniMinds</h2>
+    <div class="user-icon" title="Go to progress" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+  </div>
+
+  <div class="about-container">
+    <h1>About MiniMinds</h1>
+    <p>
+      <strong>MiniMinds</strong> is a heartfelt initiative, born from a shared vision to foster and enhance the <strong>cognitive development of toddlers and young children</strong>. 
+      With the increasing reliance on digital tools, we aimed to design a playful yet meaningful digital experience that promotes curiosity, memory, and logic through engaging games and activities.
+    </p>
+    <p>
+      Our goal is simple — to provide children with a safe, vibrant, and interactive platform that helps strengthen their foundational mental abilities while they explore, learn, and most importantly, have fun!
+    </p>
+
+    <div class="founders">
+      <h3>Meet the Founders:</h3>
+      <p><strong>Saad Anwar</strong> — B22F0460AI103</p>
+      <p><strong>Aroob Shahzad</strong> — B22F0007AI055</p>
+      <p>Both are final-year AI students at <strong>PAF-IAST</strong> (Pak-Austria Fachhochschule: Institute of Applied Sciences and Technology), driven by a passion to blend technology with education to create meaningful impact.</p>
+    </div>
+
+    <div class="back-btn">
+      <!-- Corrected link to home page -->
+      <button onclick="window.location.href='{{ url_for('home') }}'">← Back to Home</button>
+    </div>
+  </div>
+
+</body>
+</html>

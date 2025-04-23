@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Help</title>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px; background-color: #fff3cd; border-bottom: 3px solid #ffd966;
+    }
+    .user-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: url('https://via.placeholder.com/40') no-repeat center/cover;
+      cursor: pointer;
+    }
+    .help-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h3 { color: #ff6f61; }
+    .question {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .answer {
+      margin-top: 5px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>❓ Help</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+  </div>
+
+  <div class="help-container">
+    <h3>Common Questions</h3>
+    <div class="question">How do I play a game?</div>
+    <div class="answer">Just click on a card from the home screen to begin!</div>
+
+    <div class="question">How are rewards earned?</div>
+    <div class="answer">You earn points by completing quizzes and challenges. Use points in the rewards store!</div>
+
+    <div class="question">Can I change the language?</div>
+    <div class="answer">Yes! Go to the settings page and choose your preferred language.</div>
+  </div>
+</body>
+</html>

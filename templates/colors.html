@@ -1,0 +1,54 @@
+<!-- COLORS PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Learn Colors</title>
+  <!-- Corrected path to style1.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}" />
+  <style>/* same styles as Shapes page */</style>
+</head>
+<body>
+  <div class="topbar">
+    <!-- Corrected path to logo image under static folder -->
+    <h2><img src="{{ url_for('static', filename='assets/Logo.png') }}" alt="Logo" width="20" height="60"> MiniMinds</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+  </div>
+
+  <h2>Learn Colors!</h2>
+
+  <div class="flashcard-grid">
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/red.jpg') }}"><div class="shape-name">Red</div></div>
+      <div class="flip-back">Red is the color of apples, strawberries, and fire trucks!</div>
+    </div></div>
+
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/blue.png') }}"><div class="shape-name">Blue</div></div>
+      <div class="flip-back">Blue is the color of the sky and the ocean!</div>
+    </div></div>
+
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/yellow.jpg') }}"><div class="shape-name">Yellow</div></div>
+      <div class="flip-back">Yellow is bright like the sun and bananas!</div>
+    </div></div>
+
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/green.jpg') }}"><div class="shape-name">Green</div></div>
+      <div class="flip-back">Green is the color of grass, leaves, and frogs!</div>
+    </div></div>
+
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/orange.jpg') }}"><div class="shape-name">Orange</div></div>
+      <div class="flip-back">Orange is both a color and a fruit!</div>
+    </div></div>
+
+    <div class="flip-card"><div class="flip-inner">
+      <div class="flip-front"><img src="{{ url_for('static', filename='assets/purple.jpg') }}"><div class="shape-name">Purple</div></div>
+      <div class="flip-back">Purple is royal and magical, like a wizard's hat!</div>
+    </div></div>
+  </div>
+
+  <a href="learn.html" class="back-button">← Back to Learn</a>
+</body>
+</html>

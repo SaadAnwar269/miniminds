@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Settings</title>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px; background-color: #fff3cd; border-bottom: 3px solid #ffd966;
+    }
+    .user-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: url('https://via.placeholder.com/40') no-repeat center/cover;
+      cursor: pointer;
+    }
+    .settings-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .settings-container h3 {
+      margin-bottom: 20px;
+      color: #ff6f61;
+    }
+    .setting-row {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>⚙️ Settings</h2>
+    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+  </div>
+
+  <div class="settings-container">
+    <h3>Preferences</h3>
+    <div class="setting-row">
+      <label for="sound">Sound</label>
+      <select id="sound">
+        <option>On</option>
+        <option>Off</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <label for="theme">Theme</label>
+      <select id="theme">
+        <option>Light</option>
+        <option>Dark</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <label for="language">Language</label>
+      <select id="language">
+        <option>English</option>
+        <option>Spanish</option>
+      </select>
+    </div>
+  </div>
+</body>
+</html>

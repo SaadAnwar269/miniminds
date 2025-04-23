@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds Word Search</title>
+  <!-- Corrected path to style2.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h2>Word Search</h2>
+    <div id="grid" class="grid"></div>
+    <h3>Find these words:</h3>
+    <ul id="word-list"></ul>
+    <div id="status"></div>
+  </div>
+
+  <!-- Corrected path to script1.js under static folder -->
+  <script src="{{ url_for('static', filename='script1.js') }}"></script>
+</body>
+</html>

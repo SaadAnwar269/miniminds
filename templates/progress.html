@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMinds - Progress</title>
+  <!-- Corrected path to style.css under static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <!-- Link to the external script.js file -->
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Your Progress</h1>
+    
+    <!-- Dynamically display User ID, Level, and Score -->
+    <p>User ID: <span id="userIdDisplay">Loading...</span></p>
+    <p>Level: <span id="levelDisplay">0</span></p>
+    <p>Score: <span id="scoreDisplay">0</span></p>
+    
+    <!-- Display a fun image, e.g., trophy -->
+    <img src="{{ url_for('static', filename='assets/rewards.png') }}" alt="Cartoon trophy" />
+    
+    <br />
+    <!-- Button to go back to the game -->
+    <button onclick="window.location.href='{{ url_for('home') }}'">Back to Home</button>
+  </div>
+</body>
+</html>

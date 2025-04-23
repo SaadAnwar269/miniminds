@@ -1,0 +1,93 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fffbea;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-gap: 4px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .cell {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    user-select: none;
+  }
+  
+  .cell.selected {
+    background-color: #c3e6cb;
+  }
+  
+  .cell.found {
+    background-color: #8fd19e;
+    color: white;
+  }
+  
+  #word-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  #word-list li.found {
+    text-decoration: line-through;
+    color: green;
+  }
+  
+  /* Animation for congratulatory message */
+  #status {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff6f61;
+    animation: congratulation 3s ease-out;
+  }
+  
+  @keyframes congratulation {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  #back-button {
+    display: none;
+    background-color: #ff6f61;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  #back-button:hover {
+    background-color: #e85c50;
+  }
+  
+  
