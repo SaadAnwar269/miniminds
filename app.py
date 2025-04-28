@@ -76,7 +76,6 @@ def alphabet():
 # 🗨️ Route: Chatbot (with updated instructions)
 @app.route('/chatbot', methods=["GET", "POST"])
 def chatbot():
-    # System Instructions for the Chatbot
     instructions = """
     Don't overdo formatting don't make text bold or italic or anything else just add spaces where necessary no need for additional bullet formatting keep it simple. You are an assistant for toddlers and children to understand simple things.
     Keep things friendly and concise with relatable examples.
@@ -85,11 +84,7 @@ def chatbot():
     if request.method == "POST":
         data = request.get_json()
         user_input = data.get("userMessage", "")
-        
-        # Combine instructions with user input to guide the model's response
         prompt = instructions + "\nUser: " + user_input
-        
-        # Call the chatbot model
         reply = chat_with_gemini(prompt)
         return jsonify({"reply": reply})
     else:
@@ -146,20 +141,22 @@ def progress():
 
     user_id = session['user_id']
     blob_path = f"{user_id}/progress.txt"
-    progress_text = ""
 
     try:
         blob_client = container_client.get_blob_client(blob_path)
+        # Force re-download the latest file
         progress_text = blob_client.download_blob().readall().decode()
     except Exception:
         flash("Could not load your progress file.", "danger")
+        progress_text = ""
 
+    # Parse
     level = score = 0
     for line in progress_text.splitlines():
         if line.startswith("Level:"):
-            level = line.split(":")[1].strip()
+            level = int(line.split(":")[1].strip())
         elif line.startswith("Score:"):
-            score = line.split(":")[1].strip()
+            score = int(line.split(":")[1].strip())
 
     return render_template('progress.html', user_id=user_id, level=level, score=score)
 
@@ -174,6 +171,45 @@ def settings():
 @app.route('/shapes')
 def shapes():
     return render_template('shapes.html')
+
+# ✨ New API: Update Progress after Game Completion
+@app.route('/update_progress', methods=['POST'])
+def update_progress():
+    if 'user_id' not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    user_id = session['user_id']
+    data = request.get_json()
+    score_increment = data.get('score_increment', 0)
+
+    blob_path = f"{user_id}/progress.txt"
+    blob_client = container_client.get_blob_client(blob_path)
+
+    try:
+        progress_text = blob_client.download_blob().readall().decode()
+        level = 0
+        score = 0
+
+        lines = progress_text.splitlines()
+        for line in lines:
+            if line.startswith("Level:"):
+                level = int(line.split(":")[1].strip())
+            elif line.startswith("Score:"):
+                score = int(line.split(":")[1].strip())
+
+        # Update the score
+        score += int(score_increment)
+
+        # Recreate the progress content
+        new_content = f"UserId: {user_id}\nLevel: {level}\nScore: {score}"
+
+        # Upload updated progress
+        blob_client.upload_blob(new_content, overwrite=True)
+
+        return jsonify({"message": "Progress updated successfully", "new_score": score})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

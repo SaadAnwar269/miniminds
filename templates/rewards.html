@@ -3,56 +3,141 @@
 <head>
   <meta charset="UTF-8" />
   <title>MiniMinds - Rewards</title>
-  <!-- Corrected path to style.css under static folder -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #fffbe6; }
-    .topbar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 30px; background-color: #fff3cd; border-bottom: 3px solid #ffd966;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fffbea;
     }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #fff3cd;
+      border-bottom: 3px solid #ffd966;
+    }
+
     .user-icon {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       background: url('https://via.placeholder.com/40') no-repeat center/cover;
       cursor: pointer;
     }
-    .section-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px; padding: 40px; max-width: 900px; margin: 0 auto;
+
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      color: #ff6f61;
     }
-    .card {
-      background: white; border-radius: 25px; padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.2s;
-      text-align: center; cursor: pointer;
+
+    .reward-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px 25px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    .card:hover { transform: scale(1.05); }
-    .card img { width: 60px; margin-bottom: 10px; }
-    .card-title { font-size: 18px; font-weight: bold; color: #28a745; }
+
+    .reward-card {
+      background-color: white;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .reward-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cost-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #ffce00;
+      color: #5a4a00;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .reward-card img {
+      width: 100px;
+      height: 100px;
+      margin-top: 20px;
+    }
+
+    .reward-name {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a4a4a;
+    }
+
+    .back-button {
+      margin: 20px auto 40px;
+      display: block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background-color: #ff6f61;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      width: fit-content;
+    }
+
+    .back-button:hover {
+      background-color: #e85c50;
+    }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <h2>🎁 Rewards</h2>
-    <div class="user-icon" onclick="window.location.href='{{ url_for('progress') }}'"></div>
+    <h2 style="display: flex; align-items: center; gap: 10px;">
+      <img src="{{ url_for('static', filename='assets/Logo.png') }}" alt="MiniMinds Logo" width="20" height="60" style="vertical-align: middle;">
+      MiniMinds
+    </h2>
+    <div class="user-icon" title="My progress" onclick="window.location.href='{{ url_for('progress') }}'"></div>
   </div>
 
-  <div class="section-grid">
-    <div class="card">
-      <img src="{{ url_for('static', filename='assets/sticker.png') }}" alt="Stickers">
-      <div class="card-title">Fun Stickers</div>
+  <h2>Rewards Shop</h2>
+
+  <div class="reward-grid">
+    <div class="reward-card">
+      <div class="cost-badge">100 MiniPoints</div>
+      <img src="{{ url_for('static', filename='assets/sticker1.png') }}" alt="Star Sticker">
+      <div class="reward-name">Shiny Star</div>
     </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='assets/avatar.png') }}" alt="Avatars">
-      <div class="card-title">New Avatars</div>
+
+    <div class="reward-card">
+      <div class="cost-badge">150 MiniPoints</div>
+      <img src="{{ url_for('static', filename='assets/sticker2.png') }}" alt="Rainbow Sticker">
+      <div class="reward-name">Rainbow Magic</div>
     </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='assets/coins.png') }}" alt="Coins">
-      <div class="card-title">100 Coins</div>
+
+    <div class="reward-card">
+      <div class="cost-badge">200 MiniPoints</div>
+      <img src="{{ url_for('static', filename='assets/sticker3.png') }}" alt="Unicorn Sticker">
+      <div class="reward-name">Unicorn Friend</div>
     </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='assets/badge.png') }}" alt="Badges">
-      <div class="card-title">Achievement Badges</div>
+
+    <div class="reward-card">
+      <div class="cost-badge">250 MiniPoints</div>
+      <img src="{{ url_for('static', filename='assets/sticker4.png') }}" alt="Trophy Sticker">
+      <div class="reward-name">Champion Trophy</div>
     </div>
   </div>
+
+  <a href="home.html" class="back-button">← Back to Home</a>
 </body>
 </html>
