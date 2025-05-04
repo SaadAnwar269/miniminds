@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = 'your-secret-key'  # Change this in production
 
 # 🔗 Azure Blob Storage Setup
-connect_str = "DefaultEndpointsProtocol=https;AccountName=minimindsrg9f5a;AccountKey=Uu9m8m8qUuy+Zz8xwwELLCP+j5wwptJK5ayL5IgKxepGkXoxPRf7mNs25u09u2/49ET9deNN3MwC+AStsgaP/A==;EndpointSuffix=core.windows.net"
+connect_str = "LALALA"
 container_name = "progress"
 blob_service_client = BlobServiceClient.from_connection_string(connect_str)
 container_client = blob_service_client.get_container_client(container_name)
